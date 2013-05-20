@@ -248,7 +248,7 @@ module.exports = class Codo
                 console.log "Cannot parse file #{ filename }: #{ error.message }"
 
       new Generator(parser, options).generate()
-      parser.showResult()# unless options.quiet
+      parser.showResult() unless options.quiet
       done() if done
 
     catch error
