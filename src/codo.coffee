@@ -218,6 +218,44 @@ module.exports = class Codo
       console.log "Cannot generate documentation: #{ error.message }"
       throw error
 
+  ###
+    Process the files manually
+    @param {Object} options
+    @param {?Function} done callback
+  ###
+  @process: (options,done) ->
+    try
+      parser = new Parser(options)
+
+      for input in options.inputs
+        if (fs.existsSync || path.existsSync)(input)
+          stats = fs.lstatSync input
+
+          if stats.isDirectory()
+            for filename in walkdir.sync input
+              if filename.match /\._?coffee$/
+                try
+                  parser.parseFile filename.substring process.cwd().length + 1
+                catch error
+                  throw error if options.debug
+                  console.log "Cannot parse file #{ filename }: #{ error.message }"
+          else
+            if input.match /\._?coffee$/
+              try
+                parser.parseFile input
+              catch error
+                throw error if options.debug
+                console.log "Cannot parse file #{ filename }: #{ error.message }"
+
+      new Generator(parser, options).generate()
+      parser.showResult()# unless options.quiet
+      done() if done
+
+    catch error
+      done(error) if done
+      console.log "Cannot generate documentation: #{ error.message }"
+      throw error
+
   # Get the Codo script content that is used in the webinterface
   #
   # @return [String] the script content
