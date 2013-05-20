@@ -1,12 +1,11 @@
 {
-  "name" : "codo-closure",
+  "name" : "codo",
   "description" : "A CoffeeScript documentation generator with closure syntax support.",
   "keywords" : ["coffeescript", "doc"],
   "author" : "Michael Kessler <michi@netzpiraten.ch>",
   "maintainers" : [
     {
-      "name" : "Michael Kessler",
-      "name" : "Petr Stefan"
+      "name" : "Michael Kessler"
     }
   ],
   "version" : "1.6.2",
