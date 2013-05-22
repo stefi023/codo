@@ -172,7 +172,7 @@ module.exports = class Doc extends Node
         code = []
 
         while /^\s{2}.*/.test(lines[0]) or (/^$/.test(lines[0]) and /^\s{2}.*/.test(lines[1]))
-          code.push lines.shift().substring(2)
+          code.push lines.shift().substring(2).replace(/^(\s*)[`_]@/,"$1@")
 
         if code.length isnt 0
           @examples or= []
