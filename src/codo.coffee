@@ -245,7 +245,7 @@ module.exports = class Codo
                 parser.parseFile input
               catch error
                 throw error if options.debug
-                console.log "Cannot parse file #{ filename }: #{ error.message }"
+                console.log "Cannot parse file #{ input }: #{ error.message }"
 
       new Generator(parser, options).generate()
       parser.showResult() unless options.quiet
