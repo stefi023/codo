@@ -195,7 +195,7 @@ module.exports = class Generator
         methods: _.map file.getMethods(), (m) => @referencer.resolveDoc(m.toJSON(), file, assetPath)
         constants: _.map _.filter(file.getVariables(), (variable) => variable.isConstant()), (m) => @referencer.resolveDoc(m.toJSON(), file, assetPath)
         breadcrumbs: breadcrumbs
-      }, "files/#{ file.getFullName() }.html"
+      }, "files/#{ file.getFullName().replace(/^(\.\.[\\\/])+/,"") }.html"
 
   #
   # Generates the pages for all the extra files.
